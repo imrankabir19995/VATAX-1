@@ -1,0 +1,15 @@
+{
+	"id": "04651815-ff95-46ae-b95a-f3005115019e",
+	"name": "VATAccesstoken",
+	"values": [
+		{
+			"key": "token",
+			"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI3IiwianRpIjoiYzk2YjIxYTU3ZmYxMzYyMzFiYzc0YmI5MzdhZmMyNjY3OTJmODJjOGNiYzA5ZGI4ZDVmYmIzZDJmMjYwY2RkMmNmYmZmMTU0ZGFiNzVlODEiLCJpYXQiOjE2NDI4NTc2MDgsIm5iZiI6MTY0Mjg1NzYwOCwiZXhwIjoxNjc0MzkzNjA4LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.JAUTJd7Z8EGcPq0luEjsFiKqTuz14S_-2l2vXjvPD3KawQnRYj_kiRuKVfWNq1A0cssz7VTKHoiIgOA3ebGkSLR1Bz09OvnfZpkO70MQ_DpdylALDzvo61aE5VUB0zgsUT7mT-WURQFC2v0YuD_kuNruTO6bvSQ0I89j9gEcS5tJPYULTG_WssW_roWMS4fKbz8lCiU_wZ6JM72csdJ0J2oP96dYYK_ubLS-0nMxtozhjrUu97y6cJtR2qqyHe3lIHO9kfwTCev7RPxcEg7uptdxoRE-zqQRvboIIUXtAO-THQ_3jL7dDIYtQPEAmClgFY-iuIGN4AdnhFDLFs3WfhKYxbe6SvfFoCET0AiqJq7c18laDGXwo4DTfYdG8SWbAWWQy2ZSnCATsQECZIsNs4CsBwVX11-ykVQVbl5KPPEh-mfTbLgKglr7IkLsF94NHR3BjC61ogor0YJq9R68eDE8lj5XOvFNSUw5cOyOJDH02W8Nvh-tcArkTDa9iCw53PAW3KqKXJY1Sm61w1JNvslujsKGAtjfy0vJlCbMczuMX3If4pNZcSE0eC7S_SbQSQWlay68OeMQWYw4NpwY-XBEqyVayJeSUAdJ72Mr3vggu1_LQnGv0S85b0GQlaL3zWyZ4qGDZEwjwJgdVKtFuDl3vL3cgW6-NpL38sF-xtk",
+			"type": "any",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2022-01-23T11:42:37.066Z",
+	"_postman_exported_using": "Postman/9.9.3"
+}

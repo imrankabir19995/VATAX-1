@@ -1,0 +1,562 @@
+{
+	"info": {
+		"_postman_id": "5961e01a-4ac6-4100-b2c9-73939335ae7a",
+		"name": "VAT_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Sign_in",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"var jsonData= pm.response.json();\r",
+							"pm.environment.set('token', jsonData.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "email",
+						"value": "super@sls.com",
+						"type": "text"
+					},
+					{
+						"key": "password",
+						"value": "1@3super!VaTaX!2021",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"super@sls.com\",\r\n    \"password\": \"1@3super!VaTaX!2021\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://139.162.3.11:8022/api/login",
+					"protocol": "http",
+					"host": [
+						"139",
+						"162",
+						"3",
+						"11"
+					],
+					"port": "8022",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create metarials",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Create materials body matches\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"code\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"type\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"sku\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"vat\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"id\": 100,\r\n        \"name\": \"Butter\",\r\n        \"code\": \"04039000\",\r\n        \"type\": \"inventory\",\r\n        \"sku\": \"kg\",\r\n        \"exempted\": \"0\",\r\n        \"mrp_based\": \"0\",\r\n        \"category_id\": 13,\r\n        \"vat\": 15,\r\n        \"description\": \"BUTTERMILK, CURDED MILK AND CREAM.., EXCL. YOGURT\",\r\n        \"cd\": 0,\r\n        \"rd\": 0,\r\n        \"sd\": 0,\r\n        \"at\": 0,\r\n        \"atv\": null,\r\n        \"ait\": 0,\r\n        \"rebate\": 0,\r\n        \"vds\": null,\r\n        \"vds_editable\": 0,\r\n        \"vat_local\": null,\r\n        \"sd_local\": null,\r\n        \"deleted_at\": null,\r\n        \"created_at\": \"2022-01-20T08:53:27.000000Z\",\r\n        \"updated_at\": \"2022-01-20T08:53:27.000000Z\",\r\n        \"vat_type\": \"standard\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://139.162.3.11:8022/api/raw-materials",
+					"protocol": "http",
+					"host": [
+						"139",
+						"162",
+						"3",
+						"11"
+					],
+					"port": "8022",
+					"path": [
+						"api",
+						"raw-materials"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search materials",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://139.162.3.11:8022/api/raw-materials/101",
+					"protocol": "http",
+					"host": [
+						"139",
+						"162",
+						"3",
+						"11"
+					],
+					"port": "8022",
+					"path": [
+						"api",
+						"raw-materials",
+						"101"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update materials",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"id\": 100,\r\n        \"name\": \"Butter nun\",\r\n        \"code\": \"04039000\",\r\n        \"type\": \"inventory\",\r\n        \"sku\": \"kg\",\r\n        \"exempted\": \"0\",\r\n        \"mrp_based\": \"0\",\r\n        \"category_id\": 13,\r\n        \"vat\": 15,\r\n        \"description\": \"BUTTERMILK, CURDED MILK AND CREAM.., EXCL. YOGURT\",\r\n        \"cd\": 0,\r\n        \"rd\": 0,\r\n        \"sd\": 0,\r\n        \"at\": 0,\r\n        \"atv\": null,\r\n        \"ait\": 0,\r\n        \"rebate\": 0,\r\n        \"vds\": null,\r\n        \"vds_editable\": 0,\r\n        \"vat_local\": null,\r\n        \"sd_local\": null,\r\n        \"deleted_at\": null,\r\n        \"created_at\": \"2022-01-20T08:53:27.000000Z\",\r\n        \"updated_at\": \"2022-01-20T08:53:27.000000Z\",\r\n        \"vat_type\": \"standard\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://139.162.3.11:8022/api/raw-materials/99",
+					"protocol": "http",
+					"host": [
+						"139",
+						"162",
+						"3",
+						"11"
+					],
+					"port": "8022",
+					"path": [
+						"api",
+						"raw-materials",
+						"99"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create local purchase",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 78,\r\n    \"party_id\": 3,\r\n    \"bin_or_nid\": \"889932233111\",\r\n    \"contact_no\": \"+088 017955111666\",\r\n    \"address\": \"House No 43, Surabad Bazar Dhaka 1207\",\r\n    \"lc_no\": \"\",\r\n    \"lc_date\": \"\",\r\n    \"challan_no\": \"5677654\",\r\n    \"challan_date\": \"2022-01-20\",\r\n    \"challan_time\": \"17:22\",\r\n    \"payment_method\": {\r\n        \"value\": \"credit\",\r\n        \"label\": \"Credit\"\r\n    },\r\n    \"vehicle_info\": \"Truck\",\r\n    \"purchase_nature\": {\r\n        \"value\": \"local\",\r\n        \"label\": \"Local\"\r\n    },\r\n    \"amount\": 0,\r\n    \"details\": [\r\n        {\r\n            \"qty\": \"10\",\r\n            \"unit_price\": \"1.20\",\r\n            \"av\": \"12.00\",\r\n            \"cd_percent\": 0,\r\n            \"cd\": 0,\r\n            \"rd_percent\": 0,\r\n            \"rd\": 0,\r\n            \"sd_percent\": 0,\r\n            \"sd\": 0,\r\n            \"vatable_value\": \"12.00\",\r\n            \"vat_percent\": 15,\r\n            \"vat\": 1.7999999999999998,\r\n            \"at_percent\": 0,\r\n            \"at\": 0,\r\n            \"ait_percent\": 0,\r\n            \"ait\": 0,\r\n            \"tti\": 0,\r\n            \"rebate_percent\": 0,\r\n            \"rebate\": 0,\r\n            \"remarks\": \"\",\r\n            \"vds\": 0,\r\n            \"vds_editable\": 0,\r\n            \"product\": {\r\n                \"value\": 108,\r\n                \"label\": \"04039000-Butter\",\r\n                \"description\": \"BUTTERMILK, CURDED MILK AND CREAM.., EXCL. YOGURT\",\r\n                \"hs_code\": \"04039000\",\r\n                \"sku\": \"kg\",\r\n                \"vat\": 15,\r\n                \"cd\": 0,\r\n                \"rd\": 0,\r\n                \"sd\": 0,\r\n                \"at\": 0,\r\n                \"atv\": null,\r\n                \"ait\": 0,\r\n                \"rebate\": 0,\r\n                \"unit_price\": 0,\r\n                \"vds\": null,\r\n                \"vds_editable\": 0,\r\n                \"vat_local\": null,\r\n                \"sd_local\": null,\r\n                \"vat_type\": \"standard\"\r\n            },\r\n            \"vat_type\": {\r\n                \"value\": \"standard\",\r\n                \"label\": \"Standard\",\r\n                \"amount\": 15\r\n            },\r\n            \"description\": \"BUTTERMILK, CURDED MILK AND CREAM.., EXCL. YOGURT\",\r\n            \"uom\": \"kg\",\r\n            \"undefined\": \"bu\"\r\n        }\r\n    ],\r\n    \"react-select-4-input\": \"bu\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://139.162.3.11:8022/api/local-purchases",
+					"protocol": "http",
+					"host": [
+						"139",
+						"162",
+						"3",
+						"11"
+					],
+					"port": "8022",
+					"path": [
+						"api",
+						"local-purchases"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search local purchase",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Search local purchase body matches\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"party_id\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"challan_no\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"challan_date\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"order_date\");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://139.162.3.11:8022/api/local-purchases/78",
+					"protocol": "http",
+					"host": [
+						"139",
+						"162",
+						"3",
+						"11"
+					],
+					"port": "8022",
+					"path": [
+						"api",
+						"local-purchases",
+						"78"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 30,\r\n    \"name\": \"Butter nun\",\r\n    \"hs_code\": \"04039000\",\r\n    \"type\": \"inventory\",\r\n    \"sku\": \"Kg\",\r\n    \"vat_type\": \"standard\",\r\n    \"vat\": 15,\r\n    \"category_id\": 16,\r\n    \"description\": \"BUTTERMILK, CURDED MILK AND CREAM.., EXCL. YOGURT\",\r\n    \"cd\": 0,\r\n    \"rd\": 0,\r\n    \"sd\": 0,\r\n    \"at\": 0,\r\n    \"atv\": null,\r\n    \"ait\": 0,\r\n    \"rebate\": 0,\r\n    \"vds\": null,\r\n    \"vds_editable\": 0,\r\n    \"vat_local\": null,\r\n    \"sd_local\": null,\r\n    \"exempted\": \"0\",\r\n    \"mrp_based\": \"0\",\r\n    \"updated_at\": \"2022-01-20T16:47:44.000000Z\",\r\n    \"created_at\": \"2022-01-20T16:47:44.000000Z\"\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://139.162.3.11:8022/api/products",
+					"protocol": "http",
+					"host": [
+						"139",
+						"162",
+						"3",
+						"11"
+					],
+					"port": "8022",
+					"path": [
+						"api",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Search product body matches\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"hs_code\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"type\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"sku\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://139.162.3.11:8022/api/products/31",
+					"protocol": "http",
+					"host": [
+						"139",
+						"162",
+						"3",
+						"11"
+					],
+					"port": "8022",
+					"path": [
+						"api",
+						"products",
+						"31"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 30,\r\n    \"name\": \"Butter nun\",\r\n    \"hs_code\": \"04039000\",\r\n    \"type\": \"inventory\",\r\n    \"sku\": \"Kg\",\r\n    \"vat_type\": \"standard\",\r\n    \"vat\": 15,\r\n    \"category_id\": 16,\r\n    \"description\": \"BUTTERMILK, CURDED MILK AND CREAM.., EXCL. YOGURT\",\r\n    \"cd\": 0,\r\n    \"rd\": 0,\r\n    \"sd\": 0,\r\n    \"at\": 0,\r\n    \"atv\": null,\r\n    \"ait\": 0,\r\n    \"rebate\": 0,\r\n    \"vds\": null,\r\n    \"vds_editable\": 0,\r\n    \"vat_local\": null,\r\n    \"sd_local\": null,\r\n    \"exempted\": \"0\",\r\n    \"mrp_based\": \"0\",\r\n    \"updated_at\": \"2022-01-20T16:47:44.000000Z\",\r\n    \"created_at\": \"2022-01-20T16:47:44.000000Z\"\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://139.162.3.11:8022/api/products/30",
+					"protocol": "http",
+					"host": [
+						"139",
+						"162",
+						"3",
+						"11"
+					],
+					"port": "8022",
+					"path": [
+						"api",
+						"products",
+						"30"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search local sales",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Search local sales body matches\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"party_id\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"lc_no\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"challan_no\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"challan_date\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"order_date\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://139.162.3.11:8022/api/sales/83",
+					"protocol": "http",
+					"host": [
+						"139",
+						"162",
+						"3",
+						"11"
+					],
+					"port": "8022",
+					"path": [
+						"api",
+						"sales",
+						"83"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
